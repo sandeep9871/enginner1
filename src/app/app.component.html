@@ -1,0 +1,47 @@
+
+<ng-template #modals let-modal>
+  <div>
+    <div>
+      <button (click)="modal.dismiss()">
+        <span>&times;</span>
+      </button>
+    </div>
+    <div>
+      <p><span style="font-weight: 700;">created_at : </span>{{created_at}}</p>
+      <p><span style="font-weight: 700;">title : </span>{{title}}</p>
+      <p><span style="font-weight: 700;">url : </span>{{url}}</p>
+      <p><span style="font-weight: 700;">author : </span>{{author}}</p>
+    </div>
+  </div>
+</ng-template>
+
+<div>
+  <div class="container">
+    <div style="text-align: center;background-color: cadetblue;">
+      <span style="font-weight: 700;">Search By Title</span><input type="text" [(ngModel)]="search">
+    </div>
+    <table>
+      <tr>
+        <th>created_at</th>
+        <th>title</th>
+        <th>url</th>
+        <th>author</th>
+      </tr>
+      <tr *ngFor="let item of tableData | searchtitle: search;" (click)="openPopup(item,modals)" class="hov">
+        <td>{{item.created_at}}</td>
+        <td>{{item.title}}</td>
+        <td>{{item.url}}</td>
+        <td>{{item.author}}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+
+<router-outlet></router-outlet>
+
+<style>
+  .hov:hover{
+    background-color: cadetblue;
+  }
+</style>
